@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+	font-family: Arial;
+	font-size: 17px;
+	padding: 8px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.row {
+	display: -ms-flexbox; /* IE10 */
+	display: flex;
+	-ms-flex-wrap: wrap; /* IE10 */
+	flex-wrap: wrap;
+	margin: 0 -16px;
+}
+
+.col-25 {
+	-ms-flex: 25%; /* IE10 */
+	flex: 25%;
+}
+
+.col-50 {
+	-ms-flex: 50%; /* IE10 */
+	flex: 50%;
+}
+
+.col-75 {
+	-ms-flex: 75%; /* IE10 */
+	flex: 75%;
+}
+
+.col-25, .col-50, .col-75 {
+	padding: 0 16px;
+}
+
+.container {
+	background-color: #f2f2f2;
+	padding: 5px 20px 15px 20px;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+}
+
+input[type=text] {
+	width: 100%;
+	margin-bottom: 20px;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+label {
+	margin-bottom: 10px;
+	display: block;
+}
+
+.icon-container {
+	margin-bottom: 20px;
+	padding: 7px 0;
+	font-size: 24px;
+}
+
+.btn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px;
+	margin: 10px 0;
+	border: none;
+	width: 100%;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 17px;
+}
+
+.btn:hover {
+	background-color: #45a049;
+}
+
+a {
+	color: #2196F3;
+}
+
+hr {
+	border: 1px solid lightgrey;
+}
+
+span.price {
+	float: right;
+	color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media ( max-width : 800px) {
+	.row {
+		flex-direction: column-reverse;
+	}
+	.col-25 {
+		margin-bottom: 20px;
+	}
+}
+</style>
+
+</head>
+<body>
+	<div class="row">
+		<div class="col-75">
+			<div class="container">
+				<form action="FeedBack.html">
+
+
+
+					<div class="col-50">
+						<h3>Payment</h3>
+						<label for="fname">Accepted Cards</label>
+						<div class="icon-container">
+							<i class="fa fa-cc-visa" style="color: navy;"></i> <i
+								class="fa fa-cc-amex" style="color: blue;"></i> <i
+								class="fa fa-cc-mastercard" style="color: red;"></i> <i
+								class="fa fa-cc-discover" style="color: orange;"></i>
+						</div>
+						<label for="cname">Name on Card</label> <input type="text"
+							id="cname" name="cardname" placeholder="NAME" required> <label
+							for="ccnum">Credit card number</label> <input type="text"
+							id="ccnum" name="cardnumber" placeholder="XXXX-XXXX-XXXX-XXXX"
+							required>
+
+						<div class="row">
+							<div class="col-50">
+								<label>Expiration Date</label> <select>
+									<option value="01">January</option>
+									<option value="02">February</option>
+									<option value="03">March</option>
+									<option value="04">April</option>
+									<option value="05">May</option>
+									<option value="06">June</option>
+									<option value="07">July</option>
+									<option value="08">August</option>
+									<option value="09">September</option> 
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select> <select>
+									<option value="16">2016</option>
+									<option value="17">2017</option>
+									<option value="18">2018</option>
+									<option value="19">2019</option>
+									<option value="20">2020</option>
+									<option value="21">2021</option>
+								</select>
+
+							</div>
+							<div class="col-50">
+								<label for="cvv">CVV</label> <input type="text" id="cvv"
+									name="cvv" placeholder="XXX" onblur="validateCvv()" required />
+							</div>
+						</div>
+					</div>
+					<input type="submit" id="submit" value="PAY" class="btn" onSubmit="window.location.reload();" />
+			</div>
+			<div></div>
+		</div>
+
+
+	</div>
+
+	<script>
+           
+	var x = document.getElementById("ccnum");
+            x.onblur= function (){
+            	var card = document.getElementById("ccnum");
+            	var h = /^\d{16}$/;
+   
+            	if(card.value.length == 16)
+            		{
+            			return(true);
+            		}
+            	else{
+            		alert("Inavlid Card Number");
+            		return(false);
+            	}
+            	
+            }
+            
+            function validateCvv(){
+            	var card = document.getElementById("cvv");
+            	var h = /^\d{3}$/;
+            	if(card.value.length == 3)
+            		{
+            			return(true);
+            		}
+            	else{
+            		alert("Inavlid CVV Number");
+            		return(false);
+            	} 
+            }
+   </script>
+
+</body>
+</html>
