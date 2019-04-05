@@ -28,6 +28,11 @@ DBConnect dbconnect = new DBConnect();
 		return dbconnect.getAllItemsByCategory(catId);
 	}
 	
+	public ArrayList<Item> viewAllItems()
+	{
+		return dbconnect.viewAllItems();
+	}
+	
 	public ArrayList<OrderMaster> getAllOrders(int tableNo){
 		return dbconnect.getAllOrders(tableNo);
 	}

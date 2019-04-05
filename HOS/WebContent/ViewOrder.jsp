@@ -69,7 +69,7 @@
 							<tr>
 								<td><%=i+1 %> <input type="hidden" name="orderId"
 									value="<%= om.getId()%>" /></td>
-								<td><%=om.getTableNo() %></td>
+								<td> <label name="l"><%=om.getTableNo() %></label>   </td>
 								<td><a href="ViewOrderedItems.jsp?orderId=<%=om.getId() %>"><%=om.getOrderName() %>
 								</a></td>
 								<td><%=om.getOrderStat().name() %></td>

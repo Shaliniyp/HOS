@@ -65,9 +65,14 @@
 					<%
 						double total = 0;
 					%>
+					
 					<%
+					
+						
 						for (int i = 0; i < bDetails.size(); i++) {
 								BillDetails bd = bDetails.get(i);
+								
+								
 					%>
 					<tr>
 						<td><%=i + 1%></td>
@@ -94,7 +99,9 @@
 						<td></td>
 						<td><%=total%></td>
 					</tr>
-				</table>
+					</table>
+	
+				
 				<form action="Payment.html">
 					<input type="submit" value="Online Payment" class="btn" />
 				</form>

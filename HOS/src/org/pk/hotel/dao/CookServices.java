@@ -18,6 +18,10 @@ public class CookServices {
 		return dbconnect.getAllOrders();
 	}
 
+	public ArrayList<Item> viewAllItems() {
+		return dbconnect.viewAllItems();
+	}
+	
 	public ArrayList<OrderDetails> getAllItems(int orderId) {
 		return dbconnect.getAllItems(orderId);
 	}
@@ -32,6 +36,9 @@ public class CookServices {
 	
 	public boolean deleteAnItem(int id) {
 		return dbconnect.deleteAnItem(id);
+	}
+	public boolean clear() {
+		return dbconnect.clear();
 	}
 
 	public boolean isItemAlreadyExists(String itemName) {

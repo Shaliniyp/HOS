@@ -20,6 +20,12 @@ public class GlobalConstants
 	public static String MSG_DELETE_SUCCESS = "%s Deleted Successfully.";
 	public static String ERROR_DELETE = "Error in %s Delete.";
 	
+	public static String MSG_CLEAR_SUCCESS = "%s cleared Successfully.";
+	public static String ERROR_CLEARING = "Error in %s clearing.";
+	
+	public static String MSG_BILL_SUCCESS = "%s cleared Successfully.";
+	public static String ERROR_BILL = "Error in %s cleared.";
+	
 	public static String MSG_UPDATE_SUCCESS = "updated Successfully.";	
 	public static String ERROR_UPDATE = "Error in updation.";
 }

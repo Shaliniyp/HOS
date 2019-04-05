@@ -16,6 +16,7 @@
 		<% if(login.getUserName().equals("cook")){%>
 		<li><a href="AddCategory.jsp" style="color: #25211e; font-weight: bold;"> Add Category </a></li>
 		<li><a href="AddItem.jsp" style="color: #25211e; font-weight: bold;"> Add Item </a></li>
+		<li><a href="ViewAllItems.jsp" style="color: #25211e; font-weight: bold;"> View All Items </a></li>
 		<li><a href="DeleteAnItem.jsp" style="color: #25211e; font-weight: bold;"> Delete an Item </a></li>
 		<li><a href="ViewOrder.jsp" style="color: #25211e; font-weight: bold;"> View Order </a></li>
 		<li><a href="ViewBillToCook.jsp" style="color: #25211e; font-weight: bold;"> View Bill </a></li>

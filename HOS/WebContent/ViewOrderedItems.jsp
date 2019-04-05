@@ -6,7 +6,7 @@
 <%@page import="org.pk.hotel.beans.OrderMaster"%>
 <%@page import="org.pk.hotel.dao.CookServices"%>
 <%@page import="java.util.ArrayList"%>
-<%
+ <%
 ArrayList<OrderDetails> orders = null;
 	if(request.getParameter("orderId") != null )
 	 orders = new CookServices().getAllItems(Integer.parseInt(request.getParameter("orderId")));

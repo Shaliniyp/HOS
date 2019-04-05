@@ -19,6 +19,7 @@ import org.pk.hotel.beans.OrderMaster.OrderStatus;
 public class DBConnect {
 	private static Connection connection = null;
 	private static String DRIVER_NAME = "com.mysql.jdbc.Driver";
+	@SuppressWarnings("unused")
 	private static String DATABASE_NAME= "hotel_order";
 	private static String DB_URL = "jdbc:mysql://localhost:3306/hotel_order";
 	private static String USER_NAME = "root";
@@ -180,6 +181,29 @@ public class DBConnect {
 		}
 		return result;
 	}
+	
+	public boolean clear() {
+		
+		String SQL = "delete from order_master where status='DELIVERED'";
+		
+		connection = getConnection();
+		boolean result = Boolean.FALSE;
+		try {
+			if (connection != null) {
+				Statement st = (Statement) connection.createStatement();
+				int update = st.executeUpdate(SQL);
+				if (update > 0)
+					result = Boolean.TRUE;
+
+				closeConnection();
+			} else {
+				System.out.println("Connection is null in clearing");
+			}
+		} catch (SQLException sqle) {
+			System.out.println("sqle in clearing - " + sqle);
+		}
+		return result;
+	}
 
 	/*
 	 * public boolean addOrder(ArrayList<Order> os) { int lastOrderId =
@@ -257,6 +281,35 @@ public class DBConnect {
 			System.out.println("sqle in addCategory - " + e);
 		}
 		return cats;
+	}
+	public ArrayList<Item> viewAllItems() {
+		String SQL = "select * from category, item where item.category_id = category.id";
+		ArrayList<Item> itms = new ArrayList<Item>();
+		Item i = null;
+		try {
+			connection = getConnection();
+			if (connection != null) {
+				Statement st = (Statement) connection.createStatement();
+				ResultSet rs = st.executeQuery(SQL);
+				while (rs.next()) {
+					i = new Item();
+					i.setId(rs.getInt("id"));
+					i.setItemName(rs.getString(5));
+					i.setCatname(rs.getString(2));
+					i.setQnt(rs.getInt(6));
+					i.setCost(rs.getString(7));
+					
+					
+					itms.add(i);
+				}
+				closeConnection();
+			} else {
+				System.out.println("connection is null getAllCategory");
+			}
+		} catch (Exception e) {
+			System.out.println("sqle in addCategory - " + e);
+		}
+		return itms;
 	}
 
 	public ArrayList<OrderMaster> getAllOrders() {
@@ -397,7 +450,6 @@ public class DBConnect {
 		}
 		return items;
 	}
-
 	public ArrayList<OrderMaster> getAllOrders(int tableNo) {
 		String SQL = "SELECT * FROM order_master where order_date = curdate() and table_no="
 				+ tableNo;
