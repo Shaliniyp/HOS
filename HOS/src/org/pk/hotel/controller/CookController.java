@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.tribes.util.Arrays;
 import org.pk.hotel.beans.Item;
 import org.pk.hotel.beans.OrderDetails;
 import org.pk.hotel.beans.OrderMaster;
@@ -73,7 +74,7 @@ public class CookController extends BaseController {
 				GlobalConstants.JSP_PAGE = contextPath + "DeleteAnItem.jsp";
 				response.sendRedirect(GlobalConstants.JSP_PAGE);
 			}
-			
+
 			else if (action.equals("viewAllItems")) {
 				int id = Integer.parseInt(request.getParameter("id"));
 				String name = request.getParameter("name");
@@ -90,9 +91,8 @@ public class CookController extends BaseController {
 				GlobalConstants.JSP_PAGE = contextPath + "ViewAllItems.jsp";
 				response.sendRedirect(GlobalConstants.JSP_PAGE);
 			}
-			
+
 			else if (action.equals("clear")) {
-				
 
 				try {
 					if (cService.clear()) {
@@ -103,14 +103,14 @@ public class CookController extends BaseController {
 					GlobalConstants.JSP_PAGE = contextPath + "Clear.jsp";
 					response.sendRedirect(GlobalConstants.JSP_PAGE);
 				} catch (Exception e) {
-				
+
 					System.out.println("NOt delivered");
-					
+
 				}
 			}
 
 			else if (action.equals("updateOStatus")) {
-	
+
 				int orderId = Integer.parseInt(request.getParameter("orderId"));
 				String status = request.getParameter("status");
 				System.out.println("id = " + orderId + "  status =" + status);
@@ -121,8 +121,7 @@ public class CookController extends BaseController {
 				}
 				GlobalConstants.JSP_PAGE = contextPath + "ViewOrder.jsp";
 				response.sendRedirect(GlobalConstants.JSP_PAGE);
-			} 
-			else if (action.equals("updateItemtatus")) {
+			} else if (action.equals("updateItemtatus")) {
 				int orderId = Integer.parseInt(request.getParameter("orderId"));
 				int itemId = Integer.parseInt(request.getParameter("itemId"));
 				String status = request.getParameter("status");
@@ -156,15 +155,22 @@ public class CookController extends BaseController {
 
 						ArrayList<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
-						System.out.println("item:" + itemId);
-						for (int i = 0; i < itemId.length; i++) {
-							OrderDetails od = new OrderDetails();
-							od.setOrderId(orderId);
-							od.setItemId(Integer.parseInt(itemId[i]));
-							od.setQnt(Integer.parseInt(qnt[i]));
-							od.setOrderStat(OrderDetails.getOrderStat(OrderDetails.OrderStatus.STARTED.name()));
-							orderDetails.add(od);
-							System.out.println(od);
+						int j=0;
+						for(int i=0;i<qnt.length;i++)
+						{
+							System.out.println("Not null quantity: "+orderId);
+							if(!qnt[i].isEmpty()) {
+								OrderDetails od = new OrderDetails();
+								od.setOrderId(orderId);
+								od.setQnt(Integer.parseInt(qnt[i]));
+								od.setItemId(Integer.parseInt(itemId[j]));
+								od.setOrderStat(OrderDetails.getOrderStat(OrderDetails.OrderStatus.STARTED.name()));
+								orderDetails.add(od);
+								System.out.println(od);
+								j++;
+								System.out.println("J value: "+j);
+							}	
+							
 						}
 
 						if (cService.addOrderedItems(orderDetails)) {

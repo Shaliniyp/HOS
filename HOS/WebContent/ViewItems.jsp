@@ -78,7 +78,7 @@ Login login = (Login) session.getAttribute(GlobalConstants.USER);
 							<td><%=cat.getItemName()%></td>
 							<td><%= cat.getQnt() %></td>
 							<td><%=cat.getCost() %></td>
-							<td><input type="number" name="orderQnt" value="0" /></td>
+							<td><input type="number" name="orderQnt" /></td>
 							<td><input type="checkbox" name="ItemId"
 								value="<%= cat.getId()%>" /></td>
 						</tr>
